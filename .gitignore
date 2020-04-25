@@ -1,0 +1,5 @@
+.stack-work/
+*~
+/stack.yaml.lock
+/.stack-work
+/hashable-accelerate.cabal
