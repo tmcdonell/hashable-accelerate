@@ -104,7 +104,7 @@ defaultSalt = 0x087fc72c
 defaultHashWithSalt :: Hashable a => Exp Int -> Exp a -> Exp Int
 defaultHashWithSalt salt x = salt `combine` hash x
 
--- | Combine two given hash values.  'combine' has zero as a left identity.
+-- | Combine two given hash values. 'combine' has zero as a left identity.
 --
 combine :: Exp Int -> Exp Int -> Exp Int
 combine h1 h2 = (h1 * 16777619) `xor` h2
@@ -187,7 +187,7 @@ instance Hashable Double where
        else hash (bitcast x :: Exp Word64)
   hashWithSalt = defaultHashWithSalt
 
-instance (Hashable a, Elt (Complex a)) => Hashable (Complex a) where
+instance Hashable a => Hashable (Complex a) where
     hash (r ::+ i)           = hash r `hashWithSalt` i
     hashWithSalt s (r ::+ i) = s `hashWithSalt` r `hashWithSalt` i
 
