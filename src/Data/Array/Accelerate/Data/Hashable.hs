@@ -31,7 +31,9 @@ import Data.Array.Accelerate.Data.Bits
 import Data.Array.Accelerate.Data.Complex
 import Data.Array.Accelerate.Data.Either
 import Data.Array.Accelerate.Data.Maybe
+import Data.Array.Accelerate.Data.Monoid
 import Data.Array.Accelerate.Data.Ratio
+import Data.Array.Accelerate.Data.Semigroup
 
 import Prelude                                            ( (<$>), id, concat )
 import Control.Monad                                      ( mapM )
@@ -214,6 +216,18 @@ instance (Hashable a, Hashable b) => Hashable (Either a b) where
     Left_ x  -> 0             `hashWithSalt` x
     Right_ x -> distinguisher `hashWithSalt` x
   hashWithSalt = defaultHashWithSalt
+
+instance Hashable a => Hashable (Min a) where
+  hashWithSalt s (Min_ a) = hashWithSalt s a
+
+instance Hashable a => Hashable (Max a) where
+  hashWithSalt s (Max_ a) = hashWithSalt s a
+
+instance Hashable a => Hashable (Sum a) where
+  hashWithSalt s (Sum_ a) = hashWithSalt s a
+
+instance Hashable a => Hashable (Product a) where
+  hashWithSalt s (Product_ a) = hashWithSalt s a
 
 $(runQ $
     let
