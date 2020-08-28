@@ -1,6 +1,8 @@
+{-# LANGUAGE BlockArguments       #-}
 {-# LANGUAGE CPP                  #-}
 {-# LANGUAGE ConstraintKinds      #-}
 {-# LANGUAGE FlexibleContexts     #-}
+{-# LANGUAGE LambdaCase           #-}
 {-# LANGUAGE RebindableSyntax     #-}
 {-# LANGUAGE TemplateHaskell      #-}
 {-# LANGUAGE UndecidableInstances #-}
@@ -29,11 +31,13 @@ import Data.Array.Accelerate.Data.Bits
 import Data.Array.Accelerate.Data.Complex
 import Data.Array.Accelerate.Data.Either
 import Data.Array.Accelerate.Data.Maybe
+import Data.Array.Accelerate.Data.Monoid
 import Data.Array.Accelerate.Data.Ratio
+import Data.Array.Accelerate.Data.Semigroup
 
 import Prelude                                            ( (<$>), id, concat )
 import Control.Monad                                      ( mapM )
-import Language.Haskell.TH                                hiding ( Exp )
+import Language.Haskell.TH                                hiding ( Exp, match )
 import qualified Prelude                                  as P
 import qualified Data.Bits                                as P
 import qualified Data.List                                as P
@@ -202,18 +206,28 @@ distinguisher :: Exp Int
 distinguisher = fromIntegral $ (maxBound :: Exp Word) `quot` 3
 
 instance Hashable a => Hashable (Maybe a) where
-  hash x =
-    if isNothing x
-       then 0
-       else distinguisher `hashWithSalt` fromJust x
+  hash = match \case
+    Nothing_ -> 0
+    Just_ x  -> distinguisher `hashWithSalt` x
   hashWithSalt = defaultHashWithSalt
 
 instance (Hashable a, Hashable b) => Hashable (Either a b) where
-  hash x =
-    if isLeft x
-       then 0             `hashWithSalt` fromLeft x
-       else distinguisher `hashWithSalt` fromRight x
+  hash = match \case
+    Left_ x  -> 0             `hashWithSalt` x
+    Right_ x -> distinguisher `hashWithSalt` x
   hashWithSalt = defaultHashWithSalt
+
+instance Hashable a => Hashable (Min a) where
+  hashWithSalt s (Min_ a) = hashWithSalt s a
+
+instance Hashable a => Hashable (Max a) where
+  hashWithSalt s (Max_ a) = hashWithSalt s a
+
+instance Hashable a => Hashable (Sum a) where
+  hashWithSalt s (Sum_ a) = hashWithSalt s a
+
+instance Hashable a => Hashable (Product a) where
+  hashWithSalt s (Product_ a) = hashWithSalt s a
 
 $(runQ $
     let
