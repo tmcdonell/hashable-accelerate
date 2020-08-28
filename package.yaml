@@ -1,23 +1,22 @@
-name:                hashable-accelerate
-version:             0.1.0.0
-github:              "tmcdonell/hashable-accelerate"
-license:             BSD3
-author:              "Trevor L. McDonell"
-maintainer:          "trevor.mcdonell@gmail.com"
-copyright:           "Trevor L. McDonell &lt;trevor.mcdonell@gmail.com&gt;"
+name:                 hashable-accelerate
+version:              0.1.0.0
+github:               "tmcdonell/hashable-accelerate"
+license:              BSD3
+author:               "Trevor L. McDonell"
+maintainer:           "Trevor L. McDonell <trevor.mcdonell@gmail.com>"
 
 extra-source-files:
 - README.md
 - CHANGELOG.md
 
 # Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
+synopsis:             A class for types which can be converted into a hash value
+category:             Accelerate, Data
 
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/tmcdonell/hashable-accelerate#readme>
+description:          Please see the README on GitHub at <https://github.com/tmcdonell/hashable-accelerate#readme>
 
 dependencies:
 - base >= 4.7 && < 5
