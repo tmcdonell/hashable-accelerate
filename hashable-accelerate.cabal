@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 492d3740f83ed87e76a1c607d3ecc44d35f14410e55412e410cc1d0650316e1d
+-- hash: 311ae20bdafe08bcf8608d32bb057d5525fb0e6d722f5426b94607f4142641cb
 
 name:           hashable-accelerate
 version:        0.1.0.0
@@ -14,8 +14,7 @@ category:       Accelerate, Data
 homepage:       https://github.com/tmcdonell/hashable-accelerate#readme
 bug-reports:    https://github.com/tmcdonell/hashable-accelerate/issues
 author:         Trevor L. McDonell
-maintainer:     Trevor L. McDonell &lt;trevor.mcdonell@gmail.com&gt;
-copyright:      Trevor L. McDonell &lt;trevor.mcdonell@gmail.com&gt;
+maintainer:     Trevor L. McDonell <trevor.mcdonell@gmail.com>
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple

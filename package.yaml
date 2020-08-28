@@ -3,8 +3,7 @@ version:              0.1.0.0
 github:               "tmcdonell/hashable-accelerate"
 license:              BSD3
 author:               "Trevor L. McDonell"
-maintainer:           "Trevor L. McDonell &lt;trevor.mcdonell@gmail.com&gt;"
-copyright:            "Trevor L. McDonell &lt;trevor.mcdonell@gmail.com&gt;"
+maintainer:           "Trevor L. McDonell <trevor.mcdonell@gmail.com>"
 
 extra-source-files:
 - README.md
